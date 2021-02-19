@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+index
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                Drugs
+            </h1>
+        </div>
+        <div class="col-md-8">
+            {% for drug in drugs %}
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{{ url_for('drug_detail', sicenc_name=drug.sicenc_name) }}" style="text-decoration: none">
+                            {{ drug.colloquial_name }}
+                        </a>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

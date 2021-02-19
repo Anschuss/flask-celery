@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    update drugs
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="margin-top:35px; margin-bottom: 35px">
+      <div class="col-12">
+          <h1>
+                  edit Drugs
+          </h1>
+      </div>
+        <div class="">
+            <form method="POST" action="{{ url_for('drug_update', sicenc_name=form.sicenc_name.data) }}">
+                <div class="form-group col-lg-6 col-md-8 col-sm-12">
+                    {{ form.csrf_token }}
+                    {{ form.colloquial_name.label(class='control-label') }}
+                    {{ form.colloquial_name(class='form-control') }}
+                    {{ form.sicenc_name.label(class='control-label') }}
+                    {{ form.sicenc_name(class='form-control')}}
+                    {{ form.formula.label(class='control-label') }}
+                    {{ form.formula(class='form-control')}}
+                    {{ form.opening_year.label(class='control-label') }}
+                    {{ form.opening_year(class='form-select') }}
+                    {{ form.discoverer.label(class='control-label') }}
+                    {{ form.discoverer(class='form-control') }}
+                    {{ form.class_drugs.label(class='control-label') }}
+                    {{ form.class_drugs(class='form-select') }}
+                </div>
+                <div class="btn-group col-lg-1 col-md-8 col-sm-12" style="margin-top: 22px">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

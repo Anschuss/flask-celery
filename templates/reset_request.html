@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block titile %}
+    Reset Password
+{% endblock %}
+
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <div class="media-body">
+                <h2 class="account-heading">
+                    Reset Password
+                </h2>
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Account Info</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+
+                    {% if form.email.errors %}
+                       {{ form.email(class="form-control form-control-lg is-invalid") }}
+                       <div class="invalid-feedback">
+                           {% for error in form.email.errors %}
+                              <spen>{{ error }}</spen>
+                           {% endfor %}
+                       </div>
+                    {% else %}
+                       {{ form.email(class="form-control form-control-lg" ) }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group" style="margin: 20px 1px">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}

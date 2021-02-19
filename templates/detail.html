@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block titile %}
+    {{ drug.sicenc_name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12" style="margin: 20px 10px">
+                <h2>
+                    {{ drug.colloquial_name }}
+                </h2>
+            </div>
+            <div class="col-md-8" style="margin: auto">
+                <ul class="list-group">
+                    <li class="list-group-item ">
+                        <span class="badge bg-primary rounded-pill">Year</span>
+                        : {{ drug.opening_year }}
+
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge bg-primary rounded-pill">Formula</span>
+                        : {{ drug.formula }}
+                    </li>
+                    <li class="list-group-item">
+                         <span class="badge bg-primary rounded-pill">discoverer</span>
+                        : {{ drug.discoverer }}
+                    </li>
+                    <li class="list-group-item">
+                         <span class="badge bg-primary rounded-pill">User</span>
+                        : {{ drug.user }}
+                    </li>
+{#                    <li class="list-group-item">#}
+{#                         <span class="badge bg-primary rounded-pill">User</span>#}
+{#                        : {{ drug }}#}
+{#                    </li>#}
+                </ul>
+            </div>
+
+        </div>
+        {% if drug.user == current_user.username  %}
+                <div style="margin: 20px; margin-left: auto; margin-right: auto;">
+                    <a href="{{ url_for("drug_update", sicenc_name=drug.sicenc_name) }}"
+                       class="btn btn-secondary btn-sm m-1">
+                        Update
+                    </a>
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Delete
+                    </button>
+                </div>
+            {% endif %}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">\
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">Delete</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form action="{{ url_for('delete', sicenc_name=drug.sicenc_name) }}" method="POST">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
