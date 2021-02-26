@@ -1,2 +1,2 @@
 # project
-demo project to learn flask and celery
+demo project  flask + celery
